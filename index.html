@@ -8,15 +8,161 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Cosmic Sunset Theme Configuration - Rich Interstellar Blend */
+        :root {
+            --ambient-bg: #0b0914;                         /* Midnight Violet Void Base */
+            --gradient-color-1: rgba(244, 63, 94, 0.55);   /* Radiant High-Visibility Rose Pink */
+            --gradient-color-2: rgba(139, 92, 246, 0.5);   /* Deep Cosmic Purple */
+            --border-glow: rgba(244, 63, 94, 0.45);        /* Sunset Rose border glow on hover */
+            --card-hover-glow: rgba(244, 63, 94, 0.18);    /* Soft vibrant coral back-shadow */
+        }
+
+        [data-theme="light"] {
+            --ambient-bg: #f5f3ff;
+            --gradient-color-1: rgba(244, 63, 94, 0.18);
+            --gradient-color-2: rgba(139, 92, 246, 0.18);
+            --border-glow: rgba(244, 63, 94, 0.35);
+            --card-hover-glow: rgba(244, 63, 94, 0.08);
+        }
+
+        body {
+            background-color: var(--ambient-bg) !important;
+            transition: background-color 0.5s ease-in-out;
+            position: relative;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Massive High-Visibility Fluid Moving Cosmic Gradient Layer */
+        .ambient-glow {
+            position: fixed;
+            top: -100%;
+            left: -100%;
+            width: 300vw; 
+            height: 300vh;
+            background: radial-gradient(circle at 35% 35%, var(--gradient-color-1) 0%, transparent 38%),
+                        radial-gradient(circle at 65% 65%, var(--gradient-color-2) 0%, transparent 42%),
+                        radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.2) 0%, transparent 35%);
+            filter: blur(160px);
+            z-index: -1;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            animation: moveGradient 22s ease infinite;
+            will-change: transform;
+        }
+
+        [data-theme="light"] .ambient-glow {
+            mix-blend-mode: multiply;
+        }
+
+        /* Ultra-smooth sweeping movement animation */
+        @keyframes moveGradient {
+            0% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            33% { transform: translate(6%, 9%) rotate(120deg) scale(1.15); }
+            66% { transform: translate(-4%, 5%) rotate(240deg) scale(0.92); }
+            100% { transform: translate(0px, 0px) rotate(360deg) scale(1); }
+        }
+
+        /* Micro-interactions for Cards & Elements */
+        .glass-card, .skill-card, .glass-project {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease !important;
+        }
+        .glass-card:hover, .skill-card:hover, .glass-project:hover {
+            transform: translateY(-8px) scale(1.015);
+            box-shadow: 0 15px 30px var(--card-hover-glow);
+            border-color: var(--border-glow) !important;
+        }
+
+        /* Showcase Grid Layout Structure */
+        .system-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+        .showcase-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .showcase-item picture, .showcase-item img {
+            width: 100%;
+            height: 180px;
+            display: block;
+        }
+        .showcase-item img {
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .showcase-item img:hover {
+            transform: scale(1.03);
+        }
+        .showcase-details {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .showcase-details h4 {
+            margin: 0 0 0.35rem 0;
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+        .showcase-details p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.4;
+        }
+
+        /* Balanced Scaled-Down Certificate Card */
+        .certificate-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .certificate-card {
+            max-width: 420px !important; 
+            margin: 0 auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .certificate-card img {
+            max-height: 260px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Dynamic Typing Cursor Effect */
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
 
     <div id="particles-js"></div>
     <div class="cursor-glow"></div>
-    <div class="floating cube"></div>
-    <div class="floating sphere"></div>
-    <div class="floating ring"></div>
+    
+    <!-- Ultra-large Dynamic Cosmic Canvas Layer -->
+    <div class="ambient-glow"></div>
 
     <nav>
         <div class="logo">ABHIJEETH.</div>
@@ -39,20 +185,20 @@
             <div class="hero-text">
                 <div class="badge">Available for Internships & Projects</div>
                 <h1>Hello, I'm <span>Abhijeeth S</span></h1>
-                <h2>AI • Backend • Computer Vision Developer</h2>
+                <h2>I'm a <span class="typing-text" id="typed-headline" style="color: #f43f5e;"></span></h2>
                 <p>
                     Passionate BCA undergraduate focused on Human Computer Interaction, Artificial Intelligence, 
                     Backend Development, Data Science and Computer Vision systems.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="primary-btn">View Projects</a>
-                    <a href="Abhijeeth_Resume.pdf" download class="secondary-btn"><i class="fas fa-file-pdf"></i> Download Resume</a>
+                    <a href="#projects" class="primary-btn" style="background: #f43f5e; color: #0b0914;">View Projects</a>
+                    <a href="Abhijeeth_Resume" target="_blank" class="secondary-btn"><i class="fas fa-file-pdf"></i> View Resume</a>
                     <a href="https://github.com/abhiabhijeeth28-dotcom" target="_blank" class="secondary-btn"><i class="fab fa-github"></i> GitHub Profile</a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="profile-card">
-                    <img src="image.jpeg" alt="Abhijeeth S">
+                    <img src="image.jpeg" alt="Abhijeeth">
                 </div>
             </div>
         </div>
@@ -65,17 +211,17 @@
         </div>
         <div class="about-grid">
             <div class="glass-card">
-                <i class="fas fa-user-graduate"></i>
+                <i class="fas fa-user-graduate" style="color: #f43f5e;"></i>
                 <h3>Education</h3>
                 <p>Bachelor of Computer Applications (BCA)</p>
             </div>
             <div class="glass-card">
-                <i class="fas fa-brain"></i>
+                <i class="fas fa-brain" style="color: #f43f5e;"></i>
                 <h3>Research Interest</h3>
                 <p>Artificial Intelligence, Human Computer Interaction & Data Science</p>
             </div>
             <div class="glass-card">
-                <i class="fas fa-rocket"></i>
+                <i class="fas fa-rocket" style="color: #f43f5e;"></i>
                 <h3>Career Goal</h3>
                 <p>Building futuristic AI-powered human-centric systems.</p>
             </div>
@@ -89,32 +235,32 @@
         </div>
         <div class="skills-grid">
             <div class="skill-card">
-                <i class="fab fa-python"></i>
+                <i class="fab fa-python" style="color: #f43f5e;"></i>
                 <h3>Python</h3>
                 <p>OpenCV, Automation, AI Applications</p>
             </div>
             <div class="skill-card">
-                <i class="fas fa-eye"></i>
+                <i class="fas fa-eye" style="color: #f43f5e;"></i>
                 <h3>Computer Vision</h3>
                 <p>OpenCV & MediaPipe</p>
             </div>
             <div class="skill-card">
-                <i class="fas fa-server"></i>
+                <i class="fas fa-server" style="color: #f43f5e;"></i>
                 <h3>Backend</h3>
                 <p>PHP & MySQL</p>
             </div>
             <div class="skill-card">
-                <i class="fas fa-code"></i>
+                <i class="fas fa-code" style="color: #f43f5e;"></i>
                 <h3>Frontend</h3>
                 <p>HTML, CSS, JavaScript</p>
             </div>
             <div class="skill-card">
-                <i class="fas fa-database"></i>
+                <i class="fas fa-database" style="color: #f43f5e;"></i>
                 <h3>Database</h3>
                 <p>MySQL Management</p>
             </div>
             <div class="skill-card">
-                <i class="fas fa-chart-line"></i>
+                <i class="fas fa-chart-line" style="color: #f43f5e;"></i>
                 <h3>Data Science</h3>
                 <p>Data Mining & Analytics</p>
             </div>
@@ -127,12 +273,13 @@
             <p>Projects focused on Human Computer Interaction, AI and Software Development.</p>
         </div>
 
+        <!-- Project 1: Face Control Main Card -->
         <div class="glass-project">
             <div class="project-main-image">
-                <img src="pro1.png" alt="FCHI Project" onclick="openImage(this.src)">
+                <img src="pro1.jpg" alt="FCHI Project" onclick="openImage(this.src)">
             </div>
             <div class="project-content">
-                <span class="project-badge">Ongoing Research Project</span>
+                <span class="project-badge" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e;">Featured Core Project</span>
                 <h3>Face Control Human Interaction System</h3>
                 <p>
                     Face Control Human Interaction (FCHI) is an AI-powered desktop interaction system developed 
@@ -147,36 +294,191 @@
                     <span>AI</span>
                 </div>
                 <div class="project-buttons">
-                    <a href="PROJECT REPORT$4.pdf" download class="primary-btn">Download Report</a>
+                    <a href="PROJECT REPORT$4.pdf" download class="primary-btn" style="background: #f43f5e; color: #0b0914;">Download Report</a>
                     <a href="https://github.com/abhiabhijeeth28-dotcom/FACE-CONTROL-HUMAN-INTERACTION-WEBSITE" target="_blank" class="secondary-btn"><i class="fab fa-github"></i> Source Code</a>
                 </div>
             </div>
         </div>
 
-        <div class="gallery-title">
-            <h3>Project Screenshots</h3>
+        <!-- Walkthrough Subsection Header for FCHI -->
+        <div class="gallery-title" style="margin-top: 4rem; text-align: center;">
+            <h2 style="font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">Face Control System Walkthrough</h2>
+            <p style="color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 2.5rem auto;">Detailed module mapping showcasing real-time desktop control scripts, active switches, and platform views.</p>
         </div>
-        <div class="gallery">
-            <img src="pro1.png" onclick="openImage(this.src)">
-            <img src="pro2.png" onclick="openImage(this.src)">
-            <img src="pro3.png" onclick="openImage(this.src)">
-            <img src="web1.png" onclick="openImage(this.src)">
-            <img src="switch2.png" onclick="openImage(this.src)">
+
+        <!-- FCHI Complete Expanded Walkthrough Grid (7 Items) -->
+        <div class="system-showcase-grid" style="margin-bottom: 5rem;">
+            <!-- 1. pro1.jpg -->
+            <div class="showcase-item">
+                <img src="pro1.jpg" alt="FCHI Screen 1" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>1. Gesture Control Dashboard</h4>
+                    <p>Primary desktop runtime terminal mapping vision indices to background tracking states.</p>
+                </div>
+            </div>
+
+            <!-- 2. pro2.jpg -->
+            <div class="showcase-item">
+                <img src="pro2.jpg" alt="FCHI Screen 2" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>2. Tracking Runtime Module</h4>
+                    <p>Real-time environment script configurations managing mouse action tracking thresholds.</p>
+                </div>
+            </div>
+
+            <!-- 3. pro3.jpg -->
+            <div class="showcase-item">
+                <img src="pro3.jpg" alt="FCHI Screen 3" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>3. Face Landmark Calibration</h4>
+                    <p>Testing module analyzing coordinate points stability across facial gestures matrix indices.</p>
+                </div>
+            </div>
+
+            <!-- 4. switch2.jpg -->
+            <div class="showcase-item">
+                <img src="switch2.jpg" alt="FCHI Switch Control" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>4. Input Switch Trigger Manager</h4>
+                    <p>Dedicated tracking script managing toggle configurations and alternative action key binds.</p>
+                </div>
+            </div>
+
+            <!-- 5. web1.jpg -->
+            <div class="showcase-item">
+                <img src="web1.jpg" alt="FCHI Web 1" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>5. Web Platform Landing</h4>
+                    <p>Public-facing portal hosting onboarding workflows, setup manuals, and system instructions.</p>
+                </div>
+            </div>
+
+            <!-- 6. web2.png -->
+            <div class="showcase-item">
+                <img src="web2.jpg" alt="FCHI Web 2" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>6. Documentation Terminal</h4>
+                    <p>Developer indexing mapping structural layouts and algorithmic flows of computer vision models.</p>
+                </div>
+            </div>
+
+            <!-- 7. web3.png -->
+            <div class="showcase-item">
+                <img src="web3.jpg" alt="FCHI Web 3" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>7. Developer Profiles Hub</h4>
+                    <p>Collaborative project ecosystem detailing backend pipelines, dependencies, and integration parameters.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.05); margin: 4rem 0;">
+
+        <!-- Project 2: School Management System Overview -->
+        <div class="glass-project" style="margin-top: 2.5rem;">
+            <div class="project-main-image">
+                <img src="school website.jpg" alt="School Management System" onclick="openImage(this.src)">
+            </div>
+            <div class="project-content">
+                <span class="project-badge" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">Full-Stack Enterprise Solution</span>
+                <h3>Comprehensive School Management System</h3>
+                <p>
+                    A centralized enterprise web application designed to optimize administrative pipelines, academic indexing, and student records processing. Built with an optimized backend framework, the system features granular Role-Based Access Control (RBAC) to securely manage profiles for Administrators, Teachers, and Students while generating automated performance analytics dashboards.
+                </p>
+                <div class="project-tags">
+                    <span>PHP</span>
+                    <span>MySQL</span>
+                    <span>JavaScript</span>
+                    <span>Bootstrap</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/abhiabhijeeth28-dotcom" target="_blank" class="primary-btn" style="background: #f43f5e; color: #0b0914;"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- School Management Walkthrough Subsection Header -->
+        <div class="gallery-title" style="margin-top: 4rem; text-align: center;">
+            <h2 style="font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">School Management System Walkthrough</h2>
+            <p style="color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 2.5rem auto;">Detailed interface mapping showcasing core management modules and administrative workflows.</p>
+        </div>
+
+        <!-- School Management Grid -->
+        <div class="system-showcase-grid">
+            <!-- 1. School Management System Landing -->
+            <div class="showcase-item">
+                <img src="school website.jpg" alt="School Management System" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>1. School Management System</h4>
+                    <p>Modern public-facing landing page built to present school statistics, missions, and gateways.</p>
+                </div>
+            </div>
+
+            <!-- 2. Login Page -->
+            <div class="showcase-item">
+                <img src="login.jpg" alt="Login Page" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>2. Login Page</h4>
+                    <p>Secure, centralized verification portal utilizing encrypted sessions across roles.</p>
+                </div>
+            </div>
+
+            <!-- 3. Dashboard -->
+            <div class="showcase-item">
+                <img src="dashboard.jpg" alt="Dashboard" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>3. Dashboard</h4>
+                    <p>Comprehensive administrative panel detailing system analytics metrics at a quick glance.</p>
+                </div>
+            </div>
+			<!-- 4. manage teachers -->
+			<div class="showcase-item">
+                <img src="manage teachers.jpg" alt="manage teachers" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>4. manage teachers</h4>
+                    <p> Administrative panel detailing for teachers.</p>
+                </div>
+            </div>
+			<!-- 5. manage students-->
+			<div class="showcase-item">
+                <img src="manage students.jpg" alt="manage students" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>5. manage students</h4>
+                    <p> Administrative panel detailing for students.</p>
+                </div>
+            </div>
+			<!-- 6. manage marks -->
+			<div class="showcase-item">
+                <img src="manage marks.jpg" alt="manage marks" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>4. manage marks</h4>
+                    <p> Administrative panel detailing for subject marks.</p>
+                </div>
+            </div>
+			<!-- 7. manage attendance -->
+			<div class="showcase-item">
+                <img src="manage attendance.jpg" alt="manage attendance" onclick="openImage(this.src)">
+                <div class="showcase-details">
+                    <h4>4. manage attendance</h4>
+                    <p> Administrative panel detailing for s.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Compressed & Proportional Certificate Section -->
     <section id="certificate" class="section">
         <div class="section-title">
             <h2>Internship Certificate</h2>
             <p>Professional Training & Industry Experience</p>
         </div>
         <div class="certificate-container">
-            <div class="certificate-card">
+            <div class="certificate-card glass-card">
                 <img src="certificate.jpeg" alt="certificate" onclick="openCertificate()">
-                <div class="certificate-content">
-                    <h3>Valcom IT Services Pvt Ltd</h3>
-                    <p>Successfully completed internship in Web Based Application Development.</p>
-                    <button onclick="openCertificate()" class="primary-btn">View Certificate</button>
+                <div class="certificate-content" style="padding: 1.25rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Valcom IT Services Pvt Ltd</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">Successfully completed internship in Web Based Application Development.</p>
+                    <button onclick="openCertificate()" class="primary-btn" style="background: #f43f5e; color: #0b0914; padding: 0.5rem 1rem; font-size: 0.85rem;">View Full Screen</button>
                 </div>
             </div>
         </div>
@@ -190,33 +492,35 @@
         <div class="contact-container">
             <div class="contact-card">
                 <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope" style="color: #f43f5e;"></i>
                     <div>
                         <h3>Email</h3>
                         <p>abhiabhijeeth28@gmail.com</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-phone" style="color: #f43f5e;"></i>
                     <div>
                         <h3>Phone</h3>
                         <p>7411018791</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-location-dot"></i>
+                    <i class="fas fa-location-dot" style="color: #f43f5e;"></i>
                     <div>
                         <h3>Location</h3>
                         <p>Karnataka, India</p>
                     </div>
                 </div>
             </div>
+            
             <div class="contact-form glass-card">
-                <form>
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea rows="6" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="primary-btn">Send Message</button>
+                <!-- Connected Formspree Endpoint -->
+                <form action="https://formspree.io/f/xkoqvqzw" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="primary-btn" style="background: #f43f5e; color: #0b0914;">Send Message</button>
                 </form>
             </div>
         </div>
@@ -259,5 +563,61 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- Theme Logic Integration & Typing Engine -->
+    <script>
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        const words = ["AI Developer.", "Backend Developer.", "Computer Vision Enthusiast."];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typed-headline').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typed-headline').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 60);
+            };
+            loopDeleting();
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            typingEffect();
+        });
+    </script>
 </body>
 </html>

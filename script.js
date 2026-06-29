@@ -337,26 +337,37 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* ==========================
-   CONTACT FORM DEMO
+   CONTACT FORM INTEGRATION
 ========================== */
+const contactForm = document.querySelector("form");
 
-const form =
-    document.querySelector("form");
+if (contactForm) {
+    contactForm.addEventListener("submit", async function(e) {
+        e.preventDefault(); // Prevent standard page reload
 
-if (form) {
+        const formElements = e.target;
+        const data = new FormData(formElements);
 
-    form.addEventListener("submit", (e) => {
+        try {
+            // Asynchronously shoot data off to Formspree backend
+            const response = await fetch("https://formspree.io/f/xkoqvqzw", {
+                method: "POST",
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        e.preventDefault();
-
-        alert(
-            "Thank you for contacting me! I will get back to you soon."
-        );
-
-        form.reset();
-
+            if (response.ok) {
+                alert("Thank you for contacting me! I will get back to you soon.");
+                contactForm.reset();
+            } else {
+                alert("Oops! There was a problem submitting your form. Please try again.");
+            }
+        } catch (error) {
+            alert("Oops! There was a connectivity issue. Please check your internet network.");
+        }
     });
-
 }
 
 /* ==========================
